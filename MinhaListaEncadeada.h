@@ -10,6 +10,7 @@ class MinhaListaEncadeada :  public ListaEncadeadaAbstrata<T>
     protected:
         int _tamanho = 0;
         Elemento<T>* _primeiro = nullptr;
+    
 
     ///////////////////////////////////////////////////////////////////////
     public:
@@ -45,7 +46,7 @@ class MinhaListaEncadeada :  public ListaEncadeadaAbstrata<T>
     int posicao(T umDado) const override
     {
         if(estaVazia())
-            throw lista_encadeada_vazia_exception{};
+            return -1;//throw lista_encadeada_vazia_exception{};
 
         int pos = 1;
         for(Elemento<T> * elemento = this->_primeiro;
@@ -55,7 +56,7 @@ class MinhaListaEncadeada :  public ListaEncadeadaAbstrata<T>
         if(umDado == elemento->_dado)
             return pos;
         }
-        throw posicao_invalida_exception{};
+        return -1;//throw posicao_invalida_exception{};
     };
 
     ///////////////////////////////////////////////////////////////////////
@@ -139,13 +140,13 @@ class MinhaListaEncadeada :  public ListaEncadeadaAbstrata<T>
     ///////////////////////////////////////////////////////////////////////
     T retiraDaPosicao(int umaPosicao) override
     {
-        if(umaPosicao < 0 or umaPosicao >= getTamanho())
+        if(umaPosicao < 1 or umaPosicao > getTamanho())
             throw posicao_invalida_exception();
         
-        if(umaPosicao == 0)
+        if(umaPosicao == 1)
             return this->retiraDoInicio();
         
-        if(umaPosicao == getTamanho() - 1)
+        if(umaPosicao == getTamanho())
             return this->retiraDoFim();
         
         Elemento<T>  * aux = this->_primeiro;
