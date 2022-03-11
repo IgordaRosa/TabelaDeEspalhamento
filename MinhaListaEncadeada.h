@@ -7,14 +7,16 @@ template <typename T>
 class MinhaListaEncadeada :  public ListaEncadeadaAbstrata<T>
 {
     ///////////////////////////////////////////////////////////////////////
-    protected:
-        int _tamanho = 0;
-        Elemento<T>* _primeiro = nullptr;
-    
+    public:
+    MinhaListaEncadeada()
+    {
+        this->_tamanho = 0;
+        this->_primeiro = nullptr;
+    };
 
     ///////////////////////////////////////////////////////////////////////
     public:
-    ~MinhaListaEncadeada() override
+    ~MinhaListaEncadeada()
     {
         for(Elemento<T>  * aux = this->_primeiro;
             aux != nullptr;)
